@@ -1,3 +1,5 @@
+criptografia.py
+*.sqlite
 .idea/*
 __pycache__/*
 venv/*

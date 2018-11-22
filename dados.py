@@ -21,6 +21,28 @@ def bd():
         obra_id INTEGER
     );
     
+    CREATE TABLE IF NOT EXISTS Vales (
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+        funcionario_id INTEGER,
+        valor INTEGER,
+        data VARCHAR(10)
+    );
+    
+    CREATE TABLE IF NOT EXISTS Faltas (
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+        funcionario_id INTEGER,
+        falta INTEGER,
+        data VARCHAR(10)
+    );
+    
+    CREATE TABLE IF NOT EXISTS Ferias (
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+        funcionario_id INTEGER,
+        inicio VARCHAR(10),
+        fim VARCHAR(10)
+    )
+        
+    
     CREATE TABLE IF NOT EXISTS Mural (
         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
         user_id INTEGER,

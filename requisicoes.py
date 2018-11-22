@@ -53,4 +53,3 @@ class WinRequisicoes(object):
 
         self.win.mainloop()
 
-WinRequisicoes()
