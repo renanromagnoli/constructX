@@ -39,13 +39,13 @@ class WinReceitas(object):
         self.btn_receber = Button(self.win, text='Receber', command = self.receber)
 
         # EMPACOTAMENTOS
-        self.info.grid(row=1, column=2, sticky=W)
-        self.ent_cliente.grid(row=2, column=2, sticky=W)
-        self.com_obra.grid(row=3, column=2, sticky=W)
-        self.ent_valor.grid(row=4, column=2, sticky=W)
-        self.ent_data.grid(row=5, column=2, sticky=W)
-        self.txt_descricao.grid(row=6, column=2, sticky=W)
-        self.btn_receber.grid(row=7, column=2, sticky=E, pady=10)
+        self.info.grid(row=0, column=2, sticky=W)
+        self.ent_cliente.grid(row=1, column=2, sticky=W)
+        self.com_obra.grid(row=2, column=2, sticky=W)
+        self.ent_valor.grid(row=3, column=2, sticky=W)
+        self.ent_data.grid(row=4, column=2, sticky=W)
+        self.txt_descricao.grid(row=5, column=2, sticky=W)
+        self.btn_receber.grid(row=6, column=2, sticky=E, pady=10)
 
         # INSERT PADRÃO
         self.ent_data.insert(END, date.today().strftime('%d/%m/%y'))

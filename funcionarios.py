@@ -6,41 +6,125 @@ from tkinter import ttk
 from constantes import TITULOS_CADASTRO_FUNCIONARIO
 from comandos import criar_titulos, picture
 
+# Classe para criar o objeto de Funcionário
 class Funcionario(object):
     def __init__(self, nome, nascimento, tel, rg, ctps, endereco, cidade, obra=0, admissao=date.today()):
-        self.nome = nome
-        self.nascimento = nascimento
-        self.tel = tel
-        self.rg = rg
-        self.ctps = ctps
-        self.endereco = endereco
-        self.cidade = cidade
-        self.vale = []
-        self.admissao = admissao
-        self.ferias = []
-        self.previsaoferias = None
-        self.retornoferias = None
-        self.faltas = 0
-        self.obra_id = obra
+        self.__nome = nome
+        self.__nascimento = nascimento
+        self.__tel = tel
+        self.__rg = rg
+        self.__ctps = ctps
+        self.__endereco = endereco
+        self.__cidade = cidade
+        self.__vale = []
+        self.__admissao = admissao
+        self.__ferias = []
+        self.__previsao_ferias = None
+        self.__retorno_ferias = None
+        self.__faltas = 0
+        self.__obra_id = obra
 
-    def prevferias(self, tempo=720):
-        if self.retornoferias == None:
-            self.previsaoferias = date.fromordinal(self.admissao.toordinal() + tempo)
+    def get_nome(self):
+        return self.__nome
+
+    def set_nome(self, x):
+        self.__nome = x
+
+    def get_nascimento(self):
+        return self.__nascimento
+
+    def set_nascimento(self, x):
+        self.__nascimento = x
+
+    def get_tel(self):
+        return self.__tel
+
+    def set_tel(self, x):
+        self.__tel = x
+
+    def get_rg(self):
+        return self.__rg
+
+    def set_rg(self, x):
+        self.__rg = x
+
+    def get_ctps(self):
+        return self.__ctps
+
+    def set_ctps(self, x):
+        self.__ctps = x
+
+    def get_endereco(self):
+        return self.__endereco
+
+    def set_endereco(self, x):
+        self.__endereco = x
+
+    def get_cidade(self):
+        return self.__cidade
+
+    def set_cidade(self, x):
+        self.__cidade = x
+
+    def get_vale(self):
+        return self.__vale
+
+    def set_vale(self, x):
+        self.__vale.append(x)
+
+    def get_admissao(self):
+        return self.__admissao
+
+    def set_adminissao(self, x):
+        self.__admissao = x
+
+    def get_ferias(self):
+        return self.__ferias
+
+    def set_ferias(self, x):
+        self.__ferias.append(x)
+
+    def get_prev_ferias(self):
+        return self.__previsao_ferias
+
+    def set_prev_ferias(self, x):
+        self.__previsao_ferias = x
+
+    def get_ret_ferias(self):
+        return self.__retorno_ferias
+
+    def set_ret_ferias(self, x):
+        self.__retorno_ferias = x
+
+    def get_faltas(self):
+        return self.__faltas
+
+    def set_faltas(self):
+        self.__faltas += 1
+
+    def get_obra_id(self):
+        return self.__obra_id
+
+    def set_obra_id(self, x):
+        self.__obra_id = x
+
+    # Método "Prever Férias"
+    def prev_ferias(self, tempo=720):
+        if self.get_ret_ferias() == None:
+            self.set_prev_ferias(date.fromordinal(self.get_admissao().toordinal() + tempo))
         else:
-            self.previsaoferias = date.fromordinal(self.retornoferias.toordinal() + tempo)
-        return self.previsaoferias
+            self.set_prev_ferias(date.fromordinal(self.get_ret_ferias().toordinal() + tempo))
+        return self.get_prev_ferias()
 
-    def addfalta(self, quantidade):
-        self.faltas += quantidade
 
     def tirarferias(self, dias):
-        self.ferias.append('{} - {}'.format(date.today(), dias))
+        self.__ferias.append('{} - {}'.format(date.today(), dias))
 
 
     def cadastrar_funcionario(self):
         pass
 
-# Classe Tkinter para janela Funcionários
+# Classe  para criação do objeto janela Funcionários
 class WinFuncionarios(object):
     def __init__(self):
 
@@ -93,7 +177,7 @@ class WinFuncionarios(object):
 
         # BOTÕES
         self.btn_saveclose = Button(self.win, text='Salvar e Fechar', command=self.salvar_e_fechar, borderwidth=0)
-        self.btn_novocadastro = Button(self.win, image=self.img_novo, command=self.novo_cadastro, borderwidth=0)
+        self.btn_novocadastro = Button(self.win, image=self.img_novo, command=self.__novo_cadastro, borderwidth=0)
         self.btn_aplicar_editar = Button(self.win, borderwidth=0, )
         self.btn_cancelar = Button(self.win, image=self.img_cancelar, borderwidth=0, text='Cancelar', command=self.cancelar)
         self.btn_direita = Button(self.win, image=self.img_direita, command=self.direita, borderwidth=0)
@@ -106,28 +190,28 @@ class WinFuncionarios(object):
 
 
         # EMPACOTAMENTOS
-        self.info.grid(row=1, column=2, sticky=W)
-        self.nome.grid(row=2, column=2, sticky=W)
-        self.nascimento.grid(row=3, column=2, sticky=W)
-        self.tel.grid(row=4, column=2, sticky=W)
-        self.rg.grid(row=5, column=2, sticky=W)
-        self.endereco.grid(row=6, column=2, sticky=W)
-        self.cidade.grid(row=7, column=2, sticky=W)
-        self.obras.grid(row=8, column=2, sticky=W)
-        self.data_admissao.grid(row=9, column=2, sticky=W)
-        self.contrato_exp.grid(row=10, column=2, sticky=W)
+        self.info.grid(row=0, column=2, sticky=W)
+        self.nome.grid(row=1, column=2, sticky=W)
+        self.nascimento.grid(row=2, column=2, sticky=W)
+        self.tel.grid(row=3, column=2, sticky=W)
+        self.rg.grid(row=4, column=2, sticky=W)
+        self.endereco.grid(row=5, column=2, sticky=W)
+        self.cidade.grid(row=6, column=2, sticky=W)
+        self.obras.grid(row=7, column=2, sticky=W)
+        self.data_admissao.grid(row=8, column=2, sticky=W)
+        self.contrato_exp.grid(row=9, column=2, sticky=W)
 
-        self.btn_saveclose.grid(row=11, column=2, sticky=E, ipadx=10)
-        self.btn_novocadastro.grid(row=13, column=2, ipadx=10)
-        self.btn_aplicar_editar.grid(row=13, column=2, stick=E, ipadx=10)
+        self.btn_saveclose.grid(row=10, column=2, sticky=E, ipadx=10)
+        self.btn_novocadastro.grid(row=12, column=2, ipadx=10)
+        self.btn_aplicar_editar.grid(row=12, column=2, stick=E, ipadx=10)
 
         # VERIFICANDO SE NO BANCO DE DADOS JÁ EXISTEM REGISTRO DE FUNCIONÁRIOS
         data = sqlite3.connect('bd.sqlite')
         cur = data.cursor()
         if cur.execute('SELECT nome FROM Funcionarios').fetchone() == None:
-            self.acesso('normal')
+            self.set_acesso('normal')
         else:
-            self.acesso('disable')
+            self.set_acesso('disable')
         cur.close()
 
         self.win.mainloop()
@@ -141,7 +225,7 @@ class WinFuncionarios(object):
         return self.var_exp
 
     # STATE = NORMAL/DISABLE
-    def acesso(self, estado):
+    def __acesso(self, estado):
         self.nome['state'] = estado
         self.cidade['state'] = estado
         self.endereco['state'] = estado
@@ -155,8 +239,8 @@ class WinFuncionarios(object):
             self.btn_direita.grid_forget()
             self.btn_esquerda.grid_forget()
 
-            self.btn_saveclose.grid(row=13, column=2, sticky=W)
-            self.btn_cancelar.grid(row=13, column=1, sticky=W, pady=5, padx=30)
+            self.btn_saveclose.grid(row=12, column=2, sticky=W)
+            self.btn_cancelar.grid(row=12, column=1, sticky=W, pady=5, padx=30)
             self.btn_saveclose['image'] = self.img_salvar
             self.btn_saveclose.image = self.img_salvar
 
@@ -191,9 +275,11 @@ class WinFuncionarios(object):
 
             # BOTÕES DIREITA E ESQUERDA
 
-            self.btn_direita.grid(row=13, column=1, sticky=E, padx=40, pady=10)
-            self.btn_esquerda.grid(row=13, column=1, sticky=W, padx=40, pady=10)
+            self.btn_direita.grid(row=12, column=1, sticky=E, padx=40, pady=10)
+            self.btn_esquerda.grid(row=12, column=1, sticky=W, padx=40, pady=10)
 
+    def set_acesso(self, x):
+        self.__acesso(x)
 
     # FUNÇÃO PARA O BOTÃO DA DIREITA
     def direita(self):
@@ -215,26 +301,26 @@ class WinFuncionarios(object):
                                self.endereco.get(), self.cidade.get())
             self.data = sqlite3.connect('bd.sqlite')
             self.cur = self.data.cursor()
-            print(self.cur.execute('SELECT nome FROM Funcionarios WHERE nome = ?', (self.func.nome, )).fetchone())
+            print(self.cur.execute('SELECT nome FROM Funcionarios WHERE nome = ?', (self.func.get_nome(), )).fetchone())
 
-            if self.cur.execute('SELECT nome FROM Funcionarios WHERE nome = ?', (self.func.nome, )).fetchone() == None:
+            if self.cur.execute('SELECT nome FROM Funcionarios WHERE nome = ?', (self.func.get_nome(), )).fetchone() == None:
                 self.cur.execute('''INSERT INTO Funcionarios (nome, nascimento, tel, rg, ctps, endereco, cidade, obra_id, admissao) 
                                             VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
-                            (self.func.nome, self.func.nascimento, self.func.tel, self.func.rg, self.func.ctps,
-                             self.func.endereco, self.func.cidade, self.func.obra_id, self.func.admissao))
+                            (self.func.get_nome(), self.func.get_nascimento(), self.func.get_tel(), self.func.get_rg(), self.func.get_ctps(),
+                             self.func.get_endereco(), self.func.get_cidade(), self.func.get_obra_id(), self.func.get_admissao()))
                 self.data.commit()
                 self.cur.close()
                 self.info['text'] = 'Cadastrado realizado com sucesso!'
                 self.info['fg'] = 'green'
             else:
-                self.atualizando(self.func.nome, self.func.nascimento, self.func.tel, self.func.rg, self.func.ctps, self.func.endereco, self.func.cidade, self.func.obra_id, self.func.admissao, self.func.nome)
+                self.atualizando(self.func.get_nome(), self.func.get_nascimento(), self.func.get_tel(), self.func.get_rg(), self.func.get_ctps(), self.func.get_endereco(), self.func.get_cidade(), self.func.get_obra_id(), self.func.get_admissao(), self.func.get_nome())
 
-            self.acesso('disable')
+            self.__acesso('disable')
 
     # FUNÇÃO PARA O BOTÃO EDITAR
     def editando(self):
         print('Editando')
-        self.acesso('normal')
+        self.set_acesso('normal')
 
     # FUNÇÃO PARA ATUALIZAR O BANCO DE DADOS
     def atualizando(self, nome, nascimento, tel, rg, ctps, endereco, cidade, obra_id, admissao, referencia):
@@ -256,8 +342,8 @@ class WinFuncionarios(object):
         self.info['text'] = 'Cadastro Atualizado!'
         print('Cadastro atualizado')
 
-    def novo_cadastro(self):
-        self.acesso('normal')
+    def __novo_cadastro(self):
+        self.__acesso('normal')
         self.nome.delete(0, END)
         self.nascimento.delete(0, END)
         self.tel.delete(0, END)
@@ -266,7 +352,7 @@ class WinFuncionarios(object):
 
     def salvar_novo(self):
         self.salvar()
-        self.novo_cadastro()
+        self.__novo_cadastro()
 
     def deseja_atualizar(self):
         pass
@@ -278,12 +364,12 @@ class WinFuncionarios(object):
         self.win.destroy()
 
         print('Cadastrado')
-        print('{}\n{}\n{}\n{}\n{}'.format(func.nome, func.nascimento, func.rg, func.endereco, func.cidade))
+        print('{}\n{}\n{}\n{}\n{}'.format(self.func.get_nome(), self.func.get_nascimento(), self.func.get_rg(), self.func.get_endereco(), self.func.get_cidade()))
 
         self.win.destroy()
 
     # FUNÇÃO CANCELAR
     def cancelar(self):
         print('cancelado')
-        self.acesso('disable')
+        self.set_acesso('disable')
 

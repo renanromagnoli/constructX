@@ -40,8 +40,7 @@ def bd():
         funcionario_id INTEGER,
         inicio VARCHAR(10),
         fim VARCHAR(10)
-    )
-        
+    );        
     
     CREATE TABLE IF NOT EXISTS Mural (
         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
@@ -99,7 +98,7 @@ def bd():
         descricao TEXT
     );
     
-    CREATE TRABLE IF NOT EXISTS Despesas(
+    CREATE TABLE IF NOT EXISTS Despesas(
         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
         obra_id INTEGER,
         valor INTEGER,
@@ -118,10 +117,9 @@ def bd():
     CREATE TABLE IF NOT EXISTS Grupo(
         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
         nome VARCHAR(30)
-    )       
+    )
     ''')
     data.commit()
-    print('Banco de Dados Local - OK')
     if cur.execute('SELECT nome FROM Users').fetchone() == None:
         # Inserindo Grupos e Usuários Padrões, caso não existam.
         cur.executescript('''
@@ -140,7 +138,6 @@ def bd():
 
         
         ''')
-        print('Banco de Dados - Usuários criados!')
 
     data.commit()
     cur.close()

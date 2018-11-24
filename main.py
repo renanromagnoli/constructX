@@ -2,9 +2,10 @@
 
 
 from login import WinLogin
-from home import WinHome
+from dados import bd
 
 def main():
+    bd()
     WinLogin()
 
 

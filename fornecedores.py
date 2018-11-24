@@ -53,16 +53,16 @@ class WinFornecedores:
         self.btn_esquerda = Button(self.win, text='<')
 
         # EMPACOTAMENTOS
-        self.info.grid(row=1, column=2, sticky=W)
-        self.nome.grid(row=2, column=2, sticky=W)
-        self.rua.grid(row=3, column=2, sticky=W)
-        self.numero.grid(row=4, column=2, sticky=W)
-        self.bairro.grid(row=5, column=2, sticky=W)
-        self.cidade.grid(row=6, column=2, sticky=W)
-        self.tel.grid(row=7, column=2, sticky=W)
-        self.descricao.grid(row=8, column=2, sticky=W)
+        self.info.grid(row=0, column=2, sticky=W)
+        self.nome.grid(row=1, column=2, sticky=W)
+        self.rua.grid(row=2, column=2, sticky=W)
+        self.numero.grid(row=3, column=2, sticky=W)
+        self.bairro.grid(row=4, column=2, sticky=W)
+        self.cidade.grid(row=5, column=2, sticky=W)
+        self.tel.grid(row=6, column=2, sticky=W)
+        self.descricao.grid(row=7, column=2, sticky=W)
 
-        self.btn_aplicar.grid(row=9, column=2, sticky=E, padx=10, pady=10)
+        self.btn_aplicar.grid(row=8, column=2, sticky=E, padx=10, pady=10)
 
         self.win.mainloop()
 

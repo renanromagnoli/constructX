@@ -36,13 +36,13 @@ class WinDespesas(object):
         self.btn_lancar = Button(self.win, text='Lançar Despesa')
 
         # EMPACOTAMENTOS
-        self.info.grid(row=1, column=2, sticky=W)
-        self.com_obra.grid(row=2, column=2, sticky=W)
-        self.ent_valor.grid(row=3, column=2, sticky=W)
-        self.ent_data.grid(row=4, column=2, sticky=W)
-        self.ent_venc.grid(row=5, column=2, sticky=W)
-        self.txt_descricao.grid(row=6, column=2, sticky=W)
-        self.btn_lancar.grid(row=7, column=2, sticky=E, pady=10)
+        self.info.grid(row=0, column=2, sticky=W)
+        self.com_obra.grid(row=1, column=2, sticky=W)
+        self.ent_valor.grid(row=2, column=2, sticky=W)
+        self.ent_data.grid(row=3, column=2, sticky=W)
+        self.ent_venc.grid(row=4, column=2, sticky=W)
+        self.txt_descricao.grid(row=5, column=2, sticky=W)
+        self.btn_lancar.grid(row=6, column=2, sticky=E, pady=10)
 
         # INSERT PADRÃO
         self.ent_valor.insert(END, '0,00')

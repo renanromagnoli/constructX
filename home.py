@@ -16,7 +16,7 @@ class WinHome(object):
         self.win = Tk()
         self.win.geometry('650x500+300+100')
         self.win.iconbitmap('icon.ico')
-        self.win.title('ConstructorX - {}'.format(EMPRESA_NOME))
+        self.win.title('ConstructX - {}'.format(EMPRESA_NOME))
         self.win.iconbitmap('icon.ico')
         self.win.resizable(False, False)
 

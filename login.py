@@ -55,7 +55,7 @@ class WinLogin(object):
 
     def login(self):
         if self.__check_login() == True:
-            if self.__lem and not self.__cache():
+            if self.__lem and self.__cache() == False:
                 self.__lembrando()
             self.__win.destroy()
             WinHome()
@@ -110,7 +110,7 @@ class WinLogin(object):
 
     def __lembrando(self):
         with open('login.txt', 'w') as login:
-            login.write('{}:{}'.format(self.__get_login()[0], self.__get_login()[1]))
+           login.write('{}:{}'.format(self.__get_login()[0], self.__get_login()[1]))
 
     def __cache(self):
         try:
